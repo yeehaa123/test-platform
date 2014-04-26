@@ -1,0 +1,13 @@
+{
+  "name": "flot.tooltip",
+  "homepage": "https://github.com/krzysu/flot.tooltip",
+  "_release": "de8c4fc548",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "de8c4fc5481fca3862b0eeac8a73727837b5ee04"
+  },
+  "_source": "git://github.com/krzysu/flot.tooltip.git",
+  "_target": "*",
+  "_originalSource": "flot.tooltip"
+}
