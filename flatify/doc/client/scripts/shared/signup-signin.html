@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="en"><head><title>client/scripts/shared/signup-signin</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../../"><meta name="groc-document-path" content="client/scripts/shared/signup-signin"><meta name="groc-project-path" content="client/scripts/shared/signup-signin.js"><link rel="stylesheet" type="text/css" media="all" href="../../../assets/style.css"><script type="text/javascript" src="../../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">client/scripts/shared/signup-signin.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="kd">var</span> <span class="nx">validationApp</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;validationApp&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;firebase&#39;</span><span class="p">]);</span>
+
+<span class="nx">validationApp</span><span class="p">.</span><span class="nx">constant</span><span class="p">(</span><span class="s1">&#39;firebaseUrl&#39;</span><span class="p">,</span> <span class="s1">&#39;https://cth-site.firebaseio.com/users/&#39;</span><span class="p">);</span>
+
+<span class="nx">validationApp</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">&#39;firebase&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">firebaseUrl</span><span class="p">){</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">Firebase</span><span class="p">(</span><span class="nx">firebaseUrl</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">validationApp</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">&#39;loginService&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">firebase</span><span class="p">,</span> <span class="nx">$firebaseSimpleLogin</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">$firebaseSimpleLogin</span><span class="p">(</span><span class="nx">firebase</span><span class="p">);</span>
+<span class="p">})</span>
+
+<span class="nx">validationApp</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">firebase</span><span class="p">,</span> <span class="nx">$firebase</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">$firebase</span><span class="p">(</span><span class="nx">firebase</span><span class="p">);</span>
+<span class="p">})</span>
+
+
+<span class="nx">validationApp</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">&#39;authentication&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$q</span><span class="p">,</span> <span class="nx">userService</span><span class="p">,</span> <span class="nx">loginService</span><span class="p">){</span>
+
+  <span class="kd">var</span> <span class="nx">login</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">$q</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
+
+    <span class="nx">loginService</span><span class="p">.</span><span class="nx">$login</span><span class="p">(</span><span class="s1">&#39;github&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="nx">githubId</span><span class="o">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
+          <span class="nx">avatar_url</span><span class="o">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">thirdPartyUserData</span><span class="p">.</span><span class="nx">avatar_url</span><span class="p">,</span>
+          <span class="nx">userName</span><span class="o">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span>
+          <span class="nx">fullName</span><span class="o">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">displayName</span><span class="p">,</span>
+          <span class="nx">email</span><span class="o">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">thirdPartyUserData</span><span class="p">.</span><span class="nx">emails</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">email</span>
+        <span class="p">}</span> 
+
+        <span class="kd">var</span> <span class="nx">userFound</span> <span class="o">=</span> <span class="nx">userService</span><span class="p">.</span><span class="nx">findUserById</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">userFound</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">userFound</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span> 
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="kd">var</span> <span class="nx">logout</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">loginService</span><span class="p">.</span><span class="nx">$logout</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">login</span><span class="o">:</span> <span class="nx">login</span><span class="p">,</span>
+    <span class="nx">logout</span><span class="o">:</span> <span class="nx">logout</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">validationApp</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">&#39;userService&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">users</span><span class="p">){</span>
+
+  <span class="kd">var</span> <span class="nx">findUserById</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">githubId</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">userFound</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">gitHubKeys</span> <span class="o">=</span> <span class="nx">users</span><span class="p">.</span><span class="nx">$getIndex</span><span class="p">();</span>
+
+    <span class="nx">gitHubKeys</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">users</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">githubId</span> <span class="o">===</span> <span class="nx">githubId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">userFound</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="k">return</span> <span class="nx">userFound</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">users</span><span class="o">:</span> <span class="nx">users</span><span class="p">,</span>
+    <span class="nx">findUserById</span><span class="o">:</span> <span class="nx">findUserById</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+
+<span class="nx">validationApp</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;registrationController&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">userService</span><span class="p">){</span>
+
+  <span class="kd">var</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">userService</span><span class="p">.</span><span class="nx">users</span><span class="p">;</span>
+
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">$on</span><span class="p">(</span><span class="s1">&#39;user:loggedin&#39;</span><span class="p">,</span> <span class="nx">userEvents</span><span class="p">);</span>
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">$on</span><span class="p">(</span><span class="s1">&#39;user:loggedout&#39;</span><span class="p">,</span> <span class="nx">userEvents</span><span class="p">);</span>
+    
+  <span class="kd">function</span> <span class="nx">userEvents</span> <span class="p">(</span><span class="nx">evt</span><span class="p">,</span> <span class="nx">user</span><span class="p">,</span> <span class="nx">current</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evt</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">yearOptions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;ba1&quot;</span><span class="o">:</span> <span class="s2">&quot;Bachelor year 1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ba2&quot;</span><span class="o">:</span> <span class="s2">&quot;Bachelor year 2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ba3&quot;</span><span class="o">:</span> <span class="s2">&quot;Bachelor year 3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ma1&quot;</span><span class="o">:</span> <span class="s2">&quot;Master year 1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ma2&quot;</span><span class="o">:</span> <span class="s2">&quot;Master year 2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;oth&quot;</span><span class="o">:</span> <span class="s2">&quot;Other&quot;</span>
+  <span class="p">}</span>
+
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">submitForm</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">isValid</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isValid</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s1">&#39;githubId&#39;</span><span class="o">:</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">githubId</span><span class="p">,</span>
+      <span class="s1">&#39;avatarUrl&#39;</span><span class="o">:</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">avatar_url</span><span class="p">,</span>
+      <span class="s1">&#39;userName&#39;</span><span class="o">:</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">userName</span><span class="p">,</span>
+      <span class="s1">&#39;name&#39;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s1">&#39;first&#39;</span><span class="o">:</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">first</span><span class="p">,</span>
+        <span class="s1">&#39;last&#39;</span><span class="o">:</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">last</span>
+      <span class="p">},</span>
+      <span class="s1">&#39;email&#39;</span><span class="o">:</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">email</span><span class="p">,</span>
+      <span class="s1">&#39;studno&#39;</span><span class="o">:</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">studno</span><span class="p">,</span>
+      <span class="s1">&#39;studyYear&#39;</span><span class="o">:</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">studyYear</span><span class="p">,</span>
+      <span class="s1">&#39;study&#39;</span><span class="o">:</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">study</span><span class="p">,</span>
+      <span class="s1">&#39;codingExperience&#39;</span><span class="o">:</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">codingExperience</span><span class="p">,</span>
+      <span class="s1">&#39;motivation&#39;</span><span class="o">:</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">motivation</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">isValid</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">users</span><span class="p">.</span><span class="nx">$add</span><span class="p">(</span><span class="nx">user</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">ref</span><span class="p">){</span>
+        <span class="nx">$scope</span><span class="p">.</span><span class="nx">$emit</span><span class="p">(</span><span class="s1">&#39;user:registered&#39;</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
+      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Don&#39;t try this at home&quot;</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="p">});</span></div></div></div></div></body></html>

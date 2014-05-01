@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="en"><head><title>client/scripts/app</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="client/scripts/app"><meta name="groc-project-path" content="client/scripts/app.coffee"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">client/scripts/app.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="s">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s">&#39;app&#39;</span><span class="p">,</span> <span class="p">[</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Angular modules</p></div></div><div class="code"><div class="wrapper">    <span class="s">&#39;ngRoute&#39;</span>
+    <span class="s">&#39;ngAnimate&#39;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>3rd Party Modules</p></div></div><div class="code"><div class="wrapper">    <span class="s">&#39;ui.bootstrap&#39;</span>
+    <span class="s">&#39;easypiechart&#39;</span>
+    <span class="s">&#39;mgo-angular-wizard&#39;</span>
+    <span class="s">&#39;textAngular&#39;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Custom modules</p></div></div><div class="code"><div class="wrapper">    <span class="s">&#39;app.ui.ctrls&#39;</span>
+    <span class="s">&#39;app.ui.directives&#39;</span>
+    <span class="s">&#39;app.ui.services&#39;</span>
+    <span class="s">&#39;app.controllers&#39;</span>
+    <span class="s">&#39;app.directives&#39;</span>
+    <span class="s">&#39;app.form.validation&#39;</span>
+    <span class="s">&#39;app.ui.form.ctrls&#39;</span>
+    <span class="s">&#39;app.ui.form.directives&#39;</span>
+    <span class="s">&#39;app.tables&#39;</span>
+    <span class="s">&#39;app.task&#39;</span>
+    <span class="s">&#39;app.localization&#39;</span>
+    <span class="s">&#39;app.chart.ctrls&#39;</span>
+    <span class="s">&#39;app.chart.directives&#39;</span>
+<span class="p">])</span>
+    
+<span class="p">.</span><span class="nx">config</span><span class="p">([</span>
+    <span class="s">&#39;$routeProvider&#39;</span>
+    <span class="nf">($routeProvider) -&gt;</span>
+        <span class="nx">$routeProvider</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/&#39;</span>                                         <span class="c1"># dashboard</span>
+                <span class="nv">redirectTo: </span><span class="s">&#39;/pages/signin&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/dashboard&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/dashboard.html&#39;</span>
+            <span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>UI Kit</p></div></div><div class="code"><div class="wrapper">            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/ui/typography&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/ui/typography.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/ui/buttons&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/ui/buttons.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/ui/icons&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/ui/icons.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/ui/grids&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/ui/grids.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/ui/widgets&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/ui/widgets.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/ui/components&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/ui/components.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/ui/timeline&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/ui/timeline.html&#39;</span>
+            <span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Forms</p></div></div><div class="code"><div class="wrapper">            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/forms/elements&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/forms/elements.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/forms/layouts&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/forms/layouts.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/forms/validation&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/forms/validation.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/forms/wizard&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/forms/wizard.html&#39;</span>
+            <span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Tables</p></div></div><div class="code"><div class="wrapper">            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/tables/static&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/tables/static.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/tables/responsive&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/tables/responsive.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/tables/dynamic&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/tables/dynamic.html&#39;</span>
+            <span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Charts</p></div></div><div class="code"><div class="wrapper">            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/charts/others&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/charts/charts.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/charts/morris&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/charts/morris.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/charts/flot&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/charts/flot.html&#39;</span>
+            <span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Mail</p></div></div><div class="code"><div class="wrapper">             <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/mail/inbox&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/mail/inbox.html&#39;</span>
+            <span class="p">)</span>
+             <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/mail/compose&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/mail/compose.html&#39;</span>
+            <span class="p">)</span>
+             <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/mail/single&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/mail/single.html&#39;</span>
+            <span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Pages</p></div></div><div class="code"><div class="wrapper">            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/pages/features&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/pages/features.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/pages/signin&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/pages/signin.html&#39;</span>
+                <span class="nv">isLogin: </span><span class="kc">true</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/pages/signup&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/pages/signup.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/pages/lock-screen&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/pages/lock-screen.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/pages/profile&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/pages/profile.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/404&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/pages/404.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/pages/500&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/pages/500.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/pages/blank&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/pages/blank.html&#39;</span>
+            <span class="p">)</span>
+            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/pages/invoice&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/pages/invoice.html&#39;</span>
+            <span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Tasks</p></div></div><div class="code"><div class="wrapper">            <span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+                <span class="s">&#39;/tasks&#39;</span>
+                <span class="nv">templateUrl: </span><span class="s">&#39;views/tasks/tasks.html&#39;</span>
+            <span class="p">)</span>
+
+            <span class="p">.</span><span class="nx">otherwise</span><span class="p">(</span>
+                <span class="nv">redirectTo: </span><span class="s">&#39;/404&#39;</span>
+            <span class="p">)</span>
+<span class="p">])</span></div></div></div></div></body></html>

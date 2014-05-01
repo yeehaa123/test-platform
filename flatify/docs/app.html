@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>app.coffee</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>app.coffee</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-string">'use strict'</span>;
+
+angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">'app'</span>, [</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Angular modules</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-string">'ngRoute'</span>
+    <span class="hljs-string">'ngAnimate'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>3rd Party Modules</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-string">'ui.bootstrap'</span>
+    <span class="hljs-string">'easypiechart'</span>
+    <span class="hljs-string">'mgo-angular-wizard'</span>
+    <span class="hljs-string">'textAngular'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Custom modules</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-string">'app.ui.ctrls'</span>
+    <span class="hljs-string">'app.ui.directives'</span>
+    <span class="hljs-string">'app.ui.services'</span>
+    <span class="hljs-string">'app.controllers'</span>
+    <span class="hljs-string">'app.directives'</span>
+    <span class="hljs-string">'app.form.validation'</span>
+    <span class="hljs-string">'app.ui.form.ctrls'</span>
+    <span class="hljs-string">'app.ui.form.directives'</span>
+    <span class="hljs-string">'app.tables'</span>
+    <span class="hljs-string">'app.task'</span>
+    <span class="hljs-string">'app.localization'</span>
+    <span class="hljs-string">'app.chart.ctrls'</span>
+    <span class="hljs-string">'app.chart.directives'</span>
+])
+    
+.config([
+    <span class="hljs-string">'$routeProvider'</span>
+    <span class="hljs-function"><span class="hljs-params">($routeProvider)</span> -&gt;</span>
+        $routeProvider
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/'</span>                                         <span class="hljs-comment"># dashboard</span>
+                <span class="hljs-attribute">redirectTo</span>: <span class="hljs-string">'/pages/signin'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/dashboard'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/dashboard.html'</span>
+            )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>UI Kit</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/ui/typography'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/ui/typography.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/ui/buttons'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/ui/buttons.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/ui/icons'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/ui/icons.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/ui/grids'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/ui/grids.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/ui/widgets'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/ui/widgets.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/ui/components'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/ui/components.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/ui/timeline'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/ui/timeline.html'</span>
+            )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Forms</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/forms/elements'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/forms/elements.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/forms/layouts'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/forms/layouts.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/forms/validation'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/forms/validation.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/forms/wizard'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/forms/wizard.html'</span>
+            )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Tables</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/tables/static'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/tables/static.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/tables/responsive'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/tables/responsive.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/tables/dynamic'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/tables/dynamic.html'</span>
+            )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Charts</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/charts/others'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/charts/charts.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/charts/morris'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/charts/morris.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/charts/flot'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/charts/flot.html'</span>
+            )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Mail</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>             .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/mail/inbox'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/mail/inbox.html'</span>
+            )
+             .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/mail/compose'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/mail/compose.html'</span>
+            )
+             .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/mail/single'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/mail/single.html'</span>
+            )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Pages</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/pages/features'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/pages/features.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/pages/signin'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/pages/signin.html'</span>
+                <span class="hljs-attribute">isLogin</span>: <span class="hljs-literal">true</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/pages/signup'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/pages/signup.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/pages/lock-screen'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/pages/lock-screen.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/pages/profile'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/pages/profile.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/404'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/pages/404.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/pages/500'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/pages/500.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/pages/blank'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/pages/blank.html'</span>
+            )
+            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/pages/invoice'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/pages/invoice.html'</span>
+            )</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Tasks</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            .<span class="hljs-keyword">when</span>(
+                <span class="hljs-string">'/tasks'</span>
+                <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'views/tasks/tasks.html'</span>
+            )
+
+            .otherwise(
+                <span class="hljs-attribute">redirectTo</span>: <span class="hljs-string">'/404'</span>
+            )
+])</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
