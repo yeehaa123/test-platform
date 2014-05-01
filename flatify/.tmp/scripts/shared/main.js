@@ -18,7 +18,6 @@
         name: 'Lisa Doe'
       };
       $rootScope.$on('$routeChangeStart', function(event, next) {
-        console.log($scope.currentUser, $scope.newUser);
         if (!$scope.currentUser && !next.isLogin) {
           $rootScope.savedLocation = $location.url();
           return $location.path('/');

@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 app = angular.module('app.controllers', ['validationApp'])
 
@@ -18,7 +18,6 @@ app.controller('AppCtrl', [
             name: 'Lisa Doe' # those which uses i18n can not be replaced with two way binding var for now.
 
         $rootScope.$on '$routeChangeStart', (event, next) ->
-          console.log($scope.currentUser, $scope.newUser)
           if (!$scope.currentUser && !next.isLogin)
             $rootScope.savedLocation = $location.url()
             $location.path('/')
