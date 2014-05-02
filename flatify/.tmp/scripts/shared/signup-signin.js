@@ -84,6 +84,9 @@
     '$scope', 'userService', '$rootScope', function($scope, userService, $rootScope) {
       var users;
       users = userService.users;
+      $scope.userInfoComplete = function(user) {
+        return user.userName && user.firstName && user.lastName && user.email && user.studno;
+      };
       $scope.yearOptions = {
         "ba1": "Bachelor year 1",
         "ba2": "Bachelor year 2",
@@ -99,8 +102,8 @@
           'avatarUrl': $scope.newUser.avatar_url,
           'userName': $scope.newUser.userName,
           'name': {
-            'first': $scope.newUser.name.first,
-            'last': $scope.newUser.name.last
+            'first': $scope.newUser.firstName,
+            'last': $scope.newUser.lastName
           },
           'email': $scope.newUser.email,
           'studno': $scope.newUser.studno,

@@ -10,11 +10,15 @@
 
   <div class="signin-body">
     <div class="container">
-      <div class="form-container" ng-controller="registrationController">
-
         <section class="row signin-social text-center">
-          <a  class="btn-twitter-round" ng-click="login()" ng-disabled="currentUser"><i class="fa fa-github"></i></a>
+          <button class="btn btn-twitter-round" 
+              ng-disabled="currentUser"
+              ng-click="login()"> 
+              <i class="fa fa-github"></i>
+          </button>
         </section>
+
+      <div class="form-container" ng-controller="registrationController">
 
         <section ng-show="newUser" class="sign-up">
           <span class="line-thru">Sign Up</span>
@@ -23,7 +27,7 @@
             <fieldset>
 
              <div class="form-group" 
-                  ng-class="{ 'has-error' : userForm.userName.$invalid && !userForm.userName.$pristine }">
+                   ng-class="{ 'has-error' : userForm.userName.$invalid && !userForm.userName.$pristine }">
                 <div class="input-group input-group-lg">
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-user"></span>
@@ -38,7 +42,8 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group"
+                   ng-class="{ 'has-error' : userForm.firstName.$invalid && !userForm.firstName.$pristine }">
                 <div class="input-group input-group-lg">
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-user"></span>
@@ -46,92 +51,127 @@
                   <input type="text"
                           class="form-control"
                           placeholder="first name"
-                          ng-model="newUser.name.first">
+                          ng-model="newUser.firstName"
+                          required>
                   </input>
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group"
+                   ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine }">
                 <div class="input-group input-group-lg">
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-user"></span>
                   </span>
                   <input type="text"
-                  class="form-control"
-                  placeholder="last name"
-                  ng-model="newUser.name.last"
-                  >
+                         class="form-control"
+                         placeholder="last name"
+                         ng-model="newUser.lastName"
+                         required>
                 </div>
               </div>
 
 
-              <div class="form-group">
+              <div class="form-group"
+                   ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
                 <div class="input-group input-group-lg">
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-envelope"></span>
                   </span>
                   <input type="email"
-                  class="form-control"
-                  placeholder="email"
-                  ng-model="newUser.email"
-                  >
+                         class="form-control"
+                         placeholder="email"
+                         ng-model="newUser.email"
+                         required>
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group"
+                   ng-class="{ 'has-error' : userForm.studno.$invalid && !userForm.studno.$pristine }">
                 <div class="input-group input-group-lg">
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-barcode"></span>
                   </span>
                   <input type="number"
-                  class="form-control"
-                  placeholder="Student Number"
-                  ng-model="newUser.studno"
-                  >
+                         class="form-control"
+                         placeholder="student number"
+                         ng-model="newUser.studno"
+                         ng-minLength="7"
+                         ng-maxLength="9"
+                         required>
                 </div>
               </div>
 
-              <div class="form-group">
-                <div class="input-group input-group-lg">
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-barcode"></span>
-                  </span>
-                  <input type="text"
-                  class="form-control"
-                  placeholder="study"
-                  ng-model="newUser.study"
-                  >
+              <div class="background" ng-show="userInfoComplete(newUser)">
+                <span class="line-thru">Background</span>
+                <div class="form-group">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-barcode"></span>
+                    </span>
+                    <input type="text"
+                           class="form-control"
+                           placeholder="study"
+                           ng-model="newUser.study"
+                           required>
+                    </input>
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group">
-                <div class="input-group input-group-lg">
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-barcode"></span>
-                  </span>
-                  <textarea 
-                  class="form-control"
-                  placeholder="Motivation"
-                  ng-model="newUser.motivation"
-                  >
-                </textarea>
-              </div>
+                <div class="form-group" 
+                      ng-class="{ 'has-error' : userForm.year.$invalid && !userForm.year.$pristine }">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-barcode"></span>
+                    </span>
+                    <select name="year" 
+                            class="form-control" 
+                            placeholder="year"
+                            ng-model="newUser.studyYear" 
+                            ng-options="id as value for (id, value) in yearOptions" 
+                            required>
+                      <option value="" disabled default>year of study</option>
+                    </select>
+                  </div>
+                </div>
 
-              <div class="form-group">
-              </div>
+                <div class="form-group" 
+                     ng-class="{ 'has-error' : userForm.experience.$invalid && !userForm.experience.$pristine }">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-barcode"></span>
+                    </span>
+                    <textarea type="text" 
+                           name="experience" 
+                           class="form-control" 
+                           placeholder="coding experience"
+                           ng-model="newUser.codingExperience" 
+                           required>
+                    </textarea>
+                  </div>
+                </div>
 
-              <div class="form-group">
-                <input type="submit" class="btn btn-primary btn-lg btn-block">Register</input>
-              </div>
+                <div class="form-group">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-barcode"></span>
+                    </span>
+                    <textarea class="form-control"
+                              placeholder="motivation"
+                              ng-model="newUser.motivation"
+                              required>
+                  </textarea>
+                </div>
+
+                <div class="form-group">
+                </div>
+
+                <div class="form-group">
+                  <input type="submit" class="btn btn-primary btn-lg btn-block">Register</input>
+                </div>
 
             </fieldset>
           </form>
-
-          <section>
-            <p class="text-center"><a href="javascript:;">Forgot your password?</a></p>
-            <p class="text-center text-muted text-small">Don't have an account yet? <a href="#/pages/signup">Sign up</a></p>
-          </section>
-
         </section>
       </div>
     </div>

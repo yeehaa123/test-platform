@@ -28,7 +28,7 @@ app.controller('AppCtrl', [
 
         $scope.login = ->
           authentication.login().then ((registereduser) ->
-            $scope.currentuser = registereduser
+            $scope.currentUser = registereduser
             $scope.$broadcast "user:loggedin", $scope.currentUser
           ), (newUser) ->
             $scope.newUser = newUser

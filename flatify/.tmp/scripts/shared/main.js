@@ -29,7 +29,7 @@
       });
       $scope.login = function() {
         return authentication.login().then((function(registereduser) {
-          $scope.currentuser = registereduser;
+          $scope.currentUser = registereduser;
           return $scope.$broadcast("user:loggedin", $scope.currentUser);
         }), function(newUser) {
           return $scope.newUser = newUser;
