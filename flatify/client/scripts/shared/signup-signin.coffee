@@ -110,7 +110,10 @@ validationApp.controller('registrationController', [
         'studno': $scope.newUser.studno
         'studyYear': $scope.newUser.studyYear
         'study': $scope.newUser.study
-        'codingExperience': $scope.newUser.codingExperience
+        'codingExperience': 
+          'html': $scope.newUser.html
+          'css': $scope.newUser.css
+          'javaScript': $scope.newUser.javaScript
         'motivation': $scope.newUser.motivation
 
       if (isValid)

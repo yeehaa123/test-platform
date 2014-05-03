@@ -102,7 +102,9 @@
                 </div>
               </div>
 
-              <div class="background" ng-show="userInfoComplete(newUser)">
+              <!-- <div class="background" ng&#45;show="userInfoComplete(newUser)"> -->
+
+              <div class="background">
                 <span class="line-thru">Background</span>
                 <div class="form-group">
                   <div class="input-group input-group-lg">
@@ -134,22 +136,96 @@
                     </select>
                   </div>
                 </div>
+              </div>
+
+              <div class="experience">
+                <span class="line-thru">Experience</span>
 
                 <div class="form-group" 
-                     ng-class="{ 'has-error' : userForm.experience.$invalid && !userForm.experience.$pristine }">
-                  <div class="input-group input-group-lg">
-                    <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-barcode"></span>
-                    </span>
-                    <textarea type="text" 
-                           name="experience" 
+                     ng-class="{ 'has-error' : userForm.html.$invalid && !userForm.html.$pristine }">
+                    <label>HTML</label>
+                    <input type="range" 
+                           name="html" 
+                           min="1"
+                           max="10"
+                           value="5"
+                           step="1"
                            class="form-control" 
-                           placeholder="coding experience"
-                           ng-model="newUser.codingExperience" 
+                           ng-model="newUser.html" 
+                           list="htmlExperience"
                            required>
-                    </textarea>
-                  </div>
+                    </input>
+                    <datalist id="htmlExperience">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </datalist>
                 </div>
+
+                <div class="form-group" 
+                     ng-class="{ 'has-error' : userForm.css.$invalid && !userForm.css.$pristine }">
+                    <label>CSS</label>
+                    <input type="range" 
+                           name="css" 
+                           min="1"
+                           max="10"
+                           value="5"
+                           step="1"
+                           class="form-control" 
+                           ng-model="newUser.css" 
+                           list="cssExperience"
+                           required>
+                    </input>
+                    <datalist id="cssExperience">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </datalist>
+                </div>
+
+                <div class="form-group" 
+                     ng-class="{ 'has-error' : userForm.javascript.$invalid && !userForm.javascript.$pristine }">
+                    <label>JavaScript</label>
+                    <input type="range" 
+                           name="javascript" 
+                           min="1"
+                           max="10"
+                           value="5"
+                           step="1"
+                           class="form-control" 
+                           ng-model="newUser.javaScript" 
+                           list="javaScriptExperience"
+                           required>
+                    </input>
+                    <datalist id="javaScriptExperience">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </datalist>
+                </div>
+
+                <span class="line-thru">Motivation</span>
 
                 <div class="form-group">
                   <div class="input-group input-group-lg">
