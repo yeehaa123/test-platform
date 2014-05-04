@@ -252,7 +252,133 @@
                       <option>10</option>
                     </datalist>
                 </div>
+
+                <div class="form-group" 
+                     ng-class="{ 'has-error' : userForm.python.$invalid && !userForm.python.$pristine }">
+                    <label>Python</label>
+                    <input type="range" 
+                           name="python" 
+                           min="1"
+                           max="10"
+                           value="5"
+                           step="1"
+                           class="form-control" 
+                           ng-model="newUser.python" 
+                           list="pythonExperience"
+                           required>
+                    </input>
+                    <datalist id="pythonExperience">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </datalist>
+                </div>
+
+                <div class="form-group" 
+                     ng-class="{ 'has-error' : userForm.php.$invalid && !userForm.php.$pristine }">
+                    <label>PHP</label>
+                    <input type="range" 
+                           name="php" 
+                           min="1"
+                           max="10"
+                           value="5"
+                           step="1"
+                           class="form-control" 
+                           ng-model="newUser.php" 
+                           list="phpExperience"
+                           required>
+                    </input>
+                    <datalist id="phpExperience">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </datalist>
+                </div>
+
+                <div class="form-group" 
+                     ng-class="{ 'has-error' : userForm.java.$invalid && !userForm.java.$pristine }">
+                    <label>Java</label>
+                    <input type="range" 
+                           name="java" 
+                           min="1"
+                           max="10"
+                           value="5"
+                           step="1"
+                           class="form-control" 
+                           ng-model="newUser.java" 
+                           list="javaExperience"
+                           required>
+                    </input>
+                    <datalist id="javaExperience">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </datalist>
+                </div>
+
+                <div class="form-group" 
+                     ng-class="{ 'has-error' : userForm.c.$invalid && !userForm.c.$pristine }">
+                    <label>C / C++ / C#</label>
+                    <input type="range" 
+                           name="c" 
+                           min="1"
+                           max="10"
+                           value="5"
+                           step="1"
+                           class="form-control" 
+                           ng-model="newUser.c" 
+                           list="cExperience"
+                           required>
+                    </input>
+                    <datalist id="cExperience">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </datalist>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{ 'has-error' : userForm.others.$invalid && !userForm.others.$pristine }">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-barcode"></span>
+                    </span>
+                    <input class="form-control"
+                              placeholder="others (separated by comma's)"
+                              ng-model="newUser.others"
+                              required>
+                  </input>
+                </div>
               </div>
+
 
               <div class="motivation" ng-show="experienceComplete(newUser)">
                 <span class="line-thru">Motivation</span>

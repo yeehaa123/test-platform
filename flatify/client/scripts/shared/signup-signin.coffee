@@ -94,7 +94,8 @@ validationApp.controller('registrationController', [
 
     $scope.experienceComplete = (user) ->
       $scope.userInfoComplete && $scope.backgroundComplete &&
-      user.html &&  user.css && user.javaScript && user.ruby 
+      user.html &&  user.css && user.javaScript && user.ruby &&
+      user.python && user.php && user.java && user.c && user.others
 
 
     $scope.yearOptions =
@@ -123,6 +124,9 @@ validationApp.controller('registrationController', [
           'css': $scope.newUser.css
           'javaScript': $scope.newUser.javaScript
           'ruby': $scope.newUser.ruby
+          'python': $scope.newUser.python
+          'php': $scope.newUser.php
+          'others': $scope.newUser.others.split(", ")
         'motivation': $scope.newUser.motivation
 
       if (isValid)
