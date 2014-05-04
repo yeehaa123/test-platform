@@ -87,6 +87,12 @@
       $scope.userInfoComplete = function(user) {
         return user.userName && user.firstName && user.lastName && user.email && user.studno;
       };
+      $scope.backgroundComplete = function(user) {
+        return $scope.userInfoComplete && user.study && user.studyYear;
+      };
+      $scope.experienceComplete = function(user) {
+        return $scope.userInfoComplete && $scope.backgroundComplete && user.html && user.css && user.javaScript && user.ruby;
+      };
       $scope.yearOptions = {
         "ba1": "Bachelor year 1",
         "ba2": "Bachelor year 2",
@@ -112,7 +118,8 @@
           'codingExperience': {
             'html': $scope.newUser.html,
             'css': $scope.newUser.css,
-            'javaScript': $scope.newUser.javaScript
+            'javaScript': $scope.newUser.javaScript,
+            'ruby': $scope.newUser.ruby
           },
           'motivation': $scope.newUser.motivation
         };

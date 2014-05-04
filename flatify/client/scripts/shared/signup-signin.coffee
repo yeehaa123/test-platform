@@ -89,6 +89,14 @@ validationApp.controller('registrationController', [
       user.userName && user.firstName && user.lastName &&
       user.email && user.studno
 
+    $scope.backgroundComplete = (user) ->
+      $scope.userInfoComplete && user.study && user.studyYear
+
+    $scope.experienceComplete = (user) ->
+      $scope.userInfoComplete && $scope.backgroundComplete &&
+      user.html &&  user.css && user.javaScript && user.ruby 
+
+
     $scope.yearOptions =
       "ba1": "Bachelor year 1",
       "ba2": "Bachelor year 2",
@@ -114,6 +122,7 @@ validationApp.controller('registrationController', [
           'html': $scope.newUser.html
           'css': $scope.newUser.css
           'javaScript': $scope.newUser.javaScript
+          'ruby': $scope.newUser.ruby
         'motivation': $scope.newUser.motivation
 
       if (isValid)
