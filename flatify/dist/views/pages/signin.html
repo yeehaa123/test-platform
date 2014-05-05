@@ -138,12 +138,13 @@
                 </div>
               </div>
 
-              <div class="experience" ng-show="backgroundComplete(newUser)">
+             <div class="experience" ng-show="backgroundComplete(newUser)">
+
                 <span class="line-thru">Experience</span>
 
                 <div class="form-group" 
-                     ng-class="{ 'has-error' : userForm.html.$invalid && !userForm.html.$pristine }">
-                    <label>HTML</label>
+                    <label>HTML
+                    </label>
                     <input type="range" 
                            name="html" 
                            min="1"
@@ -338,7 +339,7 @@
                 </div>
 
                 <div class="form-group" 
-                     ng-class="{ 'has-error' : userForm.c.$invalid && !userForm.c.$pristine }">
+                     ng-class="{ 'not-filled-in' : !userForm.c.$pristine }">
                     <label>C / C++ / C#</label>
                     <input type="range" 
                            name="c" 
@@ -367,14 +368,16 @@
 
                 <div class="form-group"
                      ng-class="{ 'has-error' : userForm.others.$invalid && !userForm.others.$pristine }">
+                  <label>Other Languages</label>
                   <div class="input-group input-group-lg">
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-barcode"></span>
                     </span>
                     <input class="form-control"
-                              placeholder="others (separated by comma's)"
-                              ng-model="newUser.others"
-                              required>
+                           name="others"
+                           placeholder="Separated by comma's. Type none if you don't know any others"
+                           ng-model="newUser.others"
+                           required>
                   </input>
                 </div>
               </div>

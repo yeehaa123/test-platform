@@ -42,6 +42,17 @@ validationApp.service('authentication', [
           if (userFound)
             deferred.resolve(userFound)
           else
+            user = $.extend(user, {
+              html: 0
+              css: 0
+              javaScript: 0
+              ruby: 0
+              python: 0
+              php: 0
+              java: 0
+              c: 0
+              others: []})
+            console.log(user)
             deferred.reject(user)
 
        deferred.promise
@@ -94,9 +105,7 @@ validationApp.controller('registrationController', [
 
     $scope.experienceComplete = (user) ->
       $scope.userInfoComplete && $scope.backgroundComplete &&
-      user.html &&  user.css && user.javaScript && user.ruby &&
-      user.python && user.php && user.java && user.c && user.others
-
+      user.others
 
     $scope.yearOptions =
       "ba1": "Bachelor year 1",
@@ -105,6 +114,10 @@ validationApp.controller('registrationController', [
       "ma1": "Master year 1",
       "ma2": "Master year 2",
       "oth": "Other"
+
+
+    $scope.submitExperience = () ->
+      console.log($scope.newUser.experience)
 
     $scope.submitForm = (isValid) ->
 

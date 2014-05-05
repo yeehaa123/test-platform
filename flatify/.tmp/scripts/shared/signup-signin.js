@@ -42,6 +42,18 @@
           if (userFound) {
             return deferred.resolve(userFound);
           } else {
+            user = $.extend(user, {
+              html: 0,
+              css: 0,
+              javaScript: 0,
+              ruby: 0,
+              python: 0,
+              php: 0,
+              java: 0,
+              c: 0,
+              others: []
+            });
+            console.log(user);
             return deferred.reject(user);
           }
         });
@@ -91,7 +103,7 @@
         return $scope.userInfoComplete && user.study && user.studyYear;
       };
       $scope.experienceComplete = function(user) {
-        return $scope.userInfoComplete && $scope.backgroundComplete && user.html && user.css && user.javaScript && user.ruby && user.python && user.php && user.java && user.c && user.others;
+        return $scope.userInfoComplete && $scope.backgroundComplete && user.others;
       };
       $scope.yearOptions = {
         "ba1": "Bachelor year 1",
@@ -100,6 +112,9 @@
         "ma1": "Master year 1",
         "ma2": "Master year 2",
         "oth": "Other"
+      };
+      $scope.submitExperience = function() {
+        return console.log($scope.newUser.experience);
       };
       return $scope.submitForm = function(isValid) {
         var user;
