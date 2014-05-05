@@ -431,24 +431,29 @@
               <div class="motivation" ng-show="experienceComplete(newUser)">
                 <span class="line-thru">Motivation</span>
 
-                <div class="form-group">
+                <div class="form-group"
+                     ng-class="{ 'has-error' : userForm.motivation.$invalid && !userForm.motivation.$pristine }">
                   <div class="input-group input-group-lg">
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-barcode"></span>
                     </span>
                     <textarea class="form-control"
+                              name="motivation"
                               placeholder="motivation"
                               ng-model="newUser.motivation"
                               required>
                   </textarea>
                 </div>
+                <p ng-show="userForm.motivation.$invalid && !userForm.motivation.$pristine" 
+                   class="help-block">
+                   Please tell us why you want to participate in <strong>Coding 
+                   the Humanities</strong>
+                </p>
+              </div>
 
-                <div class="form-group">
-                </div>
-
-                <div class="form-group">
-                  <input type="submit" class="btn btn-primary btn-lg btn-block">Register</input>
-                </div>
+              <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-lg btn-block">Register</input>
+              </div>
 
             </fieldset>
           </form>
