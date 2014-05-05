@@ -45,8 +45,12 @@
                          placeholder="user name"
                          ng-model="newUser.userName"
                          required>
-                         </input>
+                  </input>
                 </div>
+                <p ng-show="userForm.userName.$invalid && !userForm.userName.$pristine" 
+                   class="help-block">
+                   User name is required.
+                </p>
               </div>
 
               <div class="form-group"
@@ -56,12 +60,17 @@
                     <span class="glyphicon glyphicon-user"></span>
                   </span>
                   <input type="text"
+                          name="firstName"
                           class="form-control"
                           placeholder="first name"
                           ng-model="newUser.firstName"
                           required>
                   </input>
                 </div>
+                <p ng-show="userForm.firstName.$invalid && !userForm.firstName.$pristine" 
+                   class="help-block">
+                   First name is required.
+                </p>
               </div>
 
               <div class="form-group"
@@ -71,11 +80,17 @@
                     <span class="glyphicon glyphicon-user"></span>
                   </span>
                   <input type="text"
+                         name="lastName"
                          class="form-control"
                          placeholder="last name"
                          ng-model="newUser.lastName"
                          required>
+                  </input>
                 </div>
+                <p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine" 
+                   class="help-block">
+                   Last name is required.
+                </p>
               </div>
 
 
@@ -86,11 +101,17 @@
                     <span class="glyphicon glyphicon-envelope"></span>
                   </span>
                   <input type="email"
+                         name="email"
                          class="form-control"
                          placeholder="email"
                          ng-model="newUser.email"
                          required>
+                  </input>
                 </div>
+                <p ng-show="userform.email.$invalid && !userform.email.$pristine" 
+                   class="help-block">
+                   email name is required.
+                </p>
               </div>
 
               <div class="form-group"
@@ -100,29 +121,44 @@
                     <span class="glyphicon glyphicon-barcode"></span>
                   </span>
                   <input type="number"
+                         name="studno"
                          class="form-control"
                          placeholder="student number"
                          ng-model="newUser.studno"
                          ng-minLength="7"
                          ng-maxLength="9"
                          required>
+                  </input>
                 </div>
+                <p ng-show="userForm.studno.$invalid && !userForm.studno.$pristine" 
+                   class="help-block">
+                   A uva student number is required for students. If you are 
+                   staff, student at another university, of a complete outsider
+                   please fill in 00000000
+                </p>
               </div>
 
               <div class="background" ng-show="userInfoComplete(newUser)">
                 <span class="line-thru">Background</span>
-                <div class="form-group">
+
+                <div class="form-group"
+                      ng-class="{ 'has-error' : userForm.study.$invalid && !userForm.study.$pristine }">
                   <div class="input-group input-group-lg">
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-barcode"></span>
                     </span>
                     <input type="text"
+                           name="study"
                            class="form-control"
                            placeholder="study"
                            ng-model="newUser.study"
                            required>
                     </input>
                   </div>
+                  <p ng-show="userForm.study.$invalid && !userForm.study.$pristine" 
+                     class="help-block">
+                     Please tell us what you study.
+                  </p>
                 </div>
 
                 <div class="form-group" 
@@ -378,13 +414,17 @@
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-barcode"></span>
                     </span>
-                    <input class="form-control"
+                    <textarea class="form-control"
                            name="others"
-                           placeholder="Separated by comma's. Type none if you don't know any others"
+                           placeholder="Please list any other programming language that you know (separated by comma's). Type none if you don't know any others."
                            ng-model="newUser.others"
                            required>
-                  </input>
+                  </textarea>
                 </div>
+                <p ng-show="userForm.others.$invalid && !userForm.others.$pristine" 
+                   class="help-block">
+                   Please list any other programming language that you know (separated by comma's). Type none if you don't know any others.
+                </p>
               </div>
 
 

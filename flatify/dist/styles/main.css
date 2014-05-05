@@ -9594,6 +9594,10 @@ button.toast-close-button {
   max-width: 420px;
   margin: 10px auto;
 }
+.page-signin .form-container textarea,
+.page-signup .form-container textarea {
+  height: 100px;
+}
 .page-signin .line-thru,
 .page-signup .line-thru {
   margin: 1em 0;
