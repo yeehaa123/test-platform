@@ -11,14 +11,19 @@
   <div class="signin-body">
     <div class="container">
 
-        <section class="row signin-social text-center">
-          <button class="btn btn-twitter-round" 
-              ng-disabled="currentUser"
-              ng-click="login()"> 
-              <i class="fa fa-github"></i>
-          </button>
-          <p>Authenticate with your Github ID</p>
-        </section>
+      <section class="row signin-social text-center" ng-hide="currentUser">
+        <button class="btn btn-twitter-round" 
+            ng-disabled="currentUser"
+            ng-click="login()"> 
+            <i class="fa fa-github"></i>
+        </button>
+        <p>Authenticate with your Github ID</p>
+      </section>
+
+      <section class="registration-message bg-success" ng-show="currentUser">
+        <h1>Thank you for registering for Coding the Humanities.</h1>
+        <h3>We will let you know if you are accepted on May 26<h3/>
+      </section>
 
       <div class="form-container" ng-controller="registrationController">
 
