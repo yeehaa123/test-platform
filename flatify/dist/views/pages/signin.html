@@ -115,7 +115,7 @@
               </div>
 
               <div class="form-group"
-                   ng-class="{ 'has-error' : userForm.studno.$invalid && !userForm.studno.$pristine }">
+                ng-class="{ 'has-error' : userForm.studno.$invalid && !userForm.studno.$pristine }">
                 <div class="input-group input-group-lg">
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-barcode"></span>
@@ -127,10 +127,11 @@
                          ng-model="newUser.studno"
                          ng-minLength="7"
                          ng-maxLength="9"
+                         ng-focus="showHelp()"
                          required>
                   </input>
                 </div>
-                <p ng-show="userForm.studno.$invalid && !userForm.studno.$pristine" 
+                <p ng-show="helpShown"
                    class="help-block">
                    A uva student number is required for students. If you are 
                    staff, student at another university, of a complete outsider
@@ -409,8 +410,17 @@
 
                 <div class="form-group"
                      ng-class="{ 'has-error' : userForm.others.$invalid && !userForm.others.$pristine }">
-                  <label>Other Languages</label>
-                  <div class="input-group input-group-lg">
+                  <label>Do you know any other programming languages?</label>
+                  
+                  <label class="radio">
+                    <input type="radio" ng-model="knowOthers" value="yes">Yes
+                  </label>
+
+                  <label class="radio">
+                    <input type="radio" ng-model="knowOthers" value="no" default>No
+                  </label> 
+
+                  <div ng-show="showOthersInput()" class="input-group input-group-lg">
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-barcode"></span>
                     </span>
@@ -421,6 +431,7 @@
                            required>
                   </textarea>
                 </div>
+
                 <p ng-show="userForm.others.$invalid && !userForm.others.$pristine" 
                    class="help-block">
                    Please list any other programming language that you know (separated by comma's). Type none if you don't know any others.

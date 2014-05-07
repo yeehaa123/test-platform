@@ -42,7 +42,7 @@ validationApp.service('authentication', [
           if (userFound)
             deferred.resolve(userFound)
           else
-            user = $.extend(user, {
+            user = $.extend(user,
               html: 0
               css: 0
               javaScript: 0
@@ -51,7 +51,7 @@ validationApp.service('authentication', [
               php: 0
               java: 0
               c: 0
-              others: []})
+            )
             console.log(user)
             deferred.reject(user)
 
@@ -96,6 +96,14 @@ validationApp.controller('registrationController', [
 
     users = userService.users
 
+    $scope.helpShown = false
+
+    $scope.showHelp =  ->
+      $scope.helpShown = true
+
+    $scope.showOthersInput = ->
+      true if $scope.knowOthers is "yes"
+
     $scope.userInfoComplete = (user) ->
       user.userName && user.firstName && user.lastName &&
       user.email && user.studno
@@ -104,8 +112,9 @@ validationApp.controller('registrationController', [
       $scope.userInfoComplete && user.study && user.studyYear
 
     $scope.experienceComplete = (user) ->
+
       $scope.userInfoComplete && $scope.backgroundComplete &&
-      user.others
+      (user.others or $scope.knowOthers is "no" )
 
     $scope.yearOptions =
       "ba1": "Bachelor year 1",

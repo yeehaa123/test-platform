@@ -50,8 +50,7 @@
               python: 0,
               php: 0,
               java: 0,
-              c: 0,
-              others: []
+              c: 0
             });
             console.log(user);
             return deferred.reject(user);
@@ -96,6 +95,15 @@
     '$scope', 'userService', '$rootScope', function($scope, userService, $rootScope) {
       var users;
       users = userService.users;
+      $scope.helpShown = false;
+      $scope.showHelp = function() {
+        return $scope.helpShown = true;
+      };
+      $scope.showOthersInput = function() {
+        if ($scope.knowOthers === "yes") {
+          return true;
+        }
+      };
       $scope.userInfoComplete = function(user) {
         return user.userName && user.firstName && user.lastName && user.email && user.studno;
       };
@@ -103,7 +111,7 @@
         return $scope.userInfoComplete && user.study && user.studyYear;
       };
       $scope.experienceComplete = function(user) {
-        return $scope.userInfoComplete && $scope.backgroundComplete && user.others;
+        return $scope.userInfoComplete && $scope.backgroundComplete && (user.others || $scope.knowOthers === "no");
       };
       $scope.yearOptions = {
         "ba1": "Bachelor year 1",
