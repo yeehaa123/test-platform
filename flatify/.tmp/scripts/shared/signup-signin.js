@@ -93,25 +93,56 @@
 
   validationApp.controller('registrationController', [
     '$scope', 'userService', '$rootScope', function($scope, userService, $rootScope) {
-      var users;
+      var backgroundComplete, backgroundInfoVisible, experienceInfoVisible, motivationInfoVisible, otherExperience, userInfoComplete, userInfoVisible, users;
       users = userService.users;
       $scope.helpShown = false;
+      userInfoVisible = false;
+      backgroundInfoVisible = false;
+      experienceInfoVisible = false;
+      motivationInfoVisible = true;
+      otherExperience = true;
+      $scope.showUserInfo = function(user) {
+        return userInfoVisible || !userInfoComplete(user);
+      };
+      $scope.showBackgroundInfo = function(user) {
+        return (!backgroundComplete(user) || backgroundInfoVisible) && userInfoComplete(user);
+      };
+      $scope.showExperienceInfo = function(user) {
+        return (!$scope.experienceComplete(user) || experienceInfoVisible) && backgroundComplete(user);
+      };
+      $scope.showMotivationInfo = function(user) {
+        return $scope.experienceComplete(user) && motivationInfoVisible;
+      };
+      $scope.toggleUserInfo = function() {
+        return userInfoVisible = !userInfoVisible;
+      };
+      $scope.toggleBackgroundInfo = function() {
+        return backgroundInfoVisible = !backgroundInfoVisible;
+      };
+      $scope.toggleExperienceInfo = function() {
+        return experienceInfoVisible = !experienceInfoVisible;
+      };
+      $scope.toggleMotivationInfo = function() {
+        return motivationInfoVisible = !motivationInfoVisible;
+      };
       $scope.showHelp = function() {
         return $scope.helpShown = true;
       };
       $scope.showOthersInput = function() {
         if ($scope.knowOthers === "yes") {
-          return true;
+          return otherExperience = true;
+        } else if ($scope.knowOthers === "no") {
+          return otherExperience = false;
         }
       };
-      $scope.userInfoComplete = function(user) {
+      userInfoComplete = function(user) {
         return user.userName && user.firstName && user.lastName && user.email && user.studno;
       };
-      $scope.backgroundComplete = function(user) {
-        return $scope.userInfoComplete && user.study && user.studyYear;
+      backgroundComplete = function(user) {
+        return userInfoComplete && user.study && user.studyYear;
       };
       $scope.experienceComplete = function(user) {
-        return $scope.userInfoComplete && $scope.backgroundComplete && (user.others || $scope.knowOthers === "no");
+        return user.others || !otherExperience;
       };
       $scope.yearOptions = {
         "ba1": "Bachelor year 1",

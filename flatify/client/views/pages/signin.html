@@ -28,119 +28,123 @@
       <div class="form-container" ng-controller="registrationController">
 
         <section ng-show="newUser" class="sign-up">
-          <span class="line-thru">Register</span>
+
+          <span class="line-thru" ng-click="toggleUserInfo()">User Info</span>
 
           <form name="userForm" ng-submit="submitForm(userForm.$valid)" class="form-horizontal">
             <fieldset>
 
-             <div class="form-group" 
-                   ng-class="{ 'has-error' : userForm.userName.$invalid && !userForm.userName.$pristine }">
-                <div class="input-group input-group-lg">
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-user"></span>
-                  </span>
-                  <input type="text"
-                         name="userName"
-                         class="form-control"
-                         placeholder="user name"
-                         ng-model="newUser.userName"
-                         required>
-                  </input>
+              <div class="userInfo" ng-show="showUserInfo(newUser)">
+               <div class="form-group" 
+                     ng-class="{ 'has-error' : userForm.userName.$invalid && !userForm.userName.$pristine }">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-user"></span>
+                    </span>
+                    <input type="text"
+                           name="userName"
+                           class="form-control"
+                           placeholder="user name"
+                           ng-model="newUser.userName"
+                           required>
+                    </input>
+                  </div>
+                  <p ng-show="userForm.userName.$invalid && !userForm.userName.$pristine" 
+                     class="help-block">
+                     User name is required.
+                  </p>
                 </div>
-                <p ng-show="userForm.userName.$invalid && !userForm.userName.$pristine" 
-                   class="help-block">
-                   User name is required.
-                </p>
+
+                <div class="form-group"
+                     ng-class="{ 'has-error' : userForm.firstName.$invalid && !userForm.firstName.$pristine }">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-user"></span>
+                    </span>
+                    <input type="text"
+                            name="firstName"
+                            class="form-control"
+                            placeholder="first name"
+                            ng-model="newUser.firstName"
+                            required>
+                    </input>
+                  </div>
+                  <p ng-show="userForm.firstName.$invalid && !userForm.firstName.$pristine" 
+                     class="help-block">
+                     First name is required.
+                  </p>
+                </div>
+
+                <div class="form-group"
+                     ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine }">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-user"></span>
+                    </span>
+                    <input type="text"
+                           name="lastName"
+                           class="form-control"
+                           placeholder="last name"
+                           ng-model="newUser.lastName"
+                           required>
+                    </input>
+                  </div>
+                  <p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine" 
+                     class="help-block">
+                     Last name is required.
+                  </p>
+                </div>
+
+
+                <div class="form-group"
+                     ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-envelope"></span>
+                    </span>
+                    <input type="email"
+                           name="email"
+                           class="form-control"
+                           placeholder="email"
+                           ng-model="newUser.email"
+                           required>
+                    </input>
+                  </div>
+                  <p ng-show="userform.email.$invalid && !userform.email.$pristine" 
+                     class="help-block">
+                     email name is required.
+                  </p>
+                </div>
+
+                <div class="form-group"
+                  ng-class="{ 'has-error' : userForm.studno.$invalid && !userForm.studno.$pristine }">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-barcode"></span>
+                    </span>
+                    <input type="number"
+                           name="studno"
+                           class="form-control"
+                           placeholder="student number"
+                           ng-model="newUser.studno"
+                           ng-minLength="7"
+                           ng-maxLength="9"
+                           ng-focus="showHelp()"
+                           required>
+                    </input>
+                  </div>
+                  <p ng-show="helpShown"
+                     class="help-block">
+                     A uva student number is required for students. If you are 
+                     staff, student at another university, or not affiliated with
+                     an university, please fill in 00000000
+                  </p>
+                </div>
               </div>
 
-              <div class="form-group"
-                   ng-class="{ 'has-error' : userForm.firstName.$invalid && !userForm.firstName.$pristine }">
-                <div class="input-group input-group-lg">
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-user"></span>
-                  </span>
-                  <input type="text"
-                          name="firstName"
-                          class="form-control"
-                          placeholder="first name"
-                          ng-model="newUser.firstName"
-                          required>
-                  </input>
-                </div>
-                <p ng-show="userForm.firstName.$invalid && !userForm.firstName.$pristine" 
-                   class="help-block">
-                   First name is required.
-                </p>
-              </div>
+              <span ng-click="toggleBackgroundInfo()" class="line-thru">Background</span>
 
-              <div class="form-group"
-                   ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine }">
-                <div class="input-group input-group-lg">
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-user"></span>
-                  </span>
-                  <input type="text"
-                         name="lastName"
-                         class="form-control"
-                         placeholder="last name"
-                         ng-model="newUser.lastName"
-                         required>
-                  </input>
-                </div>
-                <p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine" 
-                   class="help-block">
-                   Last name is required.
-                </p>
-              </div>
-
-
-              <div class="form-group"
-                   ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
-                <div class="input-group input-group-lg">
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-envelope"></span>
-                  </span>
-                  <input type="email"
-                         name="email"
-                         class="form-control"
-                         placeholder="email"
-                         ng-model="newUser.email"
-                         required>
-                  </input>
-                </div>
-                <p ng-show="userform.email.$invalid && !userform.email.$pristine" 
-                   class="help-block">
-                   email name is required.
-                </p>
-              </div>
-
-              <div class="form-group"
-                ng-class="{ 'has-error' : userForm.studno.$invalid && !userForm.studno.$pristine }">
-                <div class="input-group input-group-lg">
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-barcode"></span>
-                  </span>
-                  <input type="number"
-                         name="studno"
-                         class="form-control"
-                         placeholder="student number"
-                         ng-model="newUser.studno"
-                         ng-minLength="7"
-                         ng-maxLength="9"
-                         ng-focus="showHelp()"
-                         required>
-                  </input>
-                </div>
-                <p ng-show="helpShown"
-                   class="help-block">
-                   A uva student number is required for students. If you are 
-                   staff, student at another university, or not affiliated with
-                   an university, please fill in 00000000
-                </p>
-              </div>
-
-              <div class="background" ng-show="userInfoComplete(newUser)">
-                <span class="line-thru">Background</span>
+              <div class="background" ng-show="showBackgroundInfo(newUser)">
 
                 <div class="form-group"
                       ng-class="{ 'has-error' : userForm.study.$invalid && !userForm.study.$pristine }">
@@ -180,9 +184,9 @@
                 </div>
               </div>
 
-             <div class="experience" ng-show="backgroundComplete(newUser)">
+             <span ng-click="toggleExperienceInfo()" class="line-thru">Experience</span>
 
-                <span class="line-thru">Experience</span>
+             <div class="experience" ng-show="showExperienceInfo(newUser)">
 
                 <div class="form-group" 
                     <label>HTML
@@ -437,39 +441,39 @@
                    Please list any other programming language that you know (separated by comma's). Type none if you don't know any others.
                 </p>
               </div>
+            </div>
 
+            <span ng-click="toggleMotivationInfo()" class="line-thru">Motivation</span>
 
-              <div class="motivation" ng-show="experienceComplete(newUser)">
-                <span class="line-thru">Motivation</span>
+            <div class="motivation" ng-show="showMotivationInfo(newUser)">
 
-                <div class="form-group"
-                     ng-class="{ 'has-error' : userForm.motivation.$invalid && !userForm.motivation.$pristine }">
-                  <div class="input-group input-group-lg">
-                    <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-barcode"></span>
-                    </span>
-                    <textarea class="form-control"
-                              name="motivation"
-                              placeholder="motivation"
-                              ng-model="newUser.motivation"
-                              required>
-                  </textarea>
-                </div>
-                <p ng-show="userForm.motivation.$invalid && !userForm.motivation.$pristine" 
-                   class="help-block">
-                   Please tell us why you want to participate in <strong>Coding 
-                   the Humanities</strong>
-                </p>
+              <div class="form-group"
+                   ng-class="{ 'has-error' : userForm.motivation.$invalid && !userForm.motivation.$pristine }">
+                <div class="input-group input-group-lg">
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-barcode"></span>
+                  </span>
+                  <textarea class="form-control"
+                            name="motivation"
+                            placeholder="motivation"
+                            ng-model="newUser.motivation"
+                            required>
+                </textarea>
               </div>
+              <p ng-show="userForm.motivation.$invalid && !userForm.motivation.$pristine" 
+                 class="help-block">
+                 Please tell us why you want to participate in <strong>Coding 
+                 the Humanities</strong>
+              </p>
+            </div>
 
-              <div class="form-group">
-                <input type="submit" class="btn btn-primary btn-lg btn-block">Register</input>
-              </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary btn-lg btn-block">Register</input>
+            </div>
 
-            </fieldset>
-          </form>
-        </section>
-      </div>
+          </fieldset>
+        </form>
+      </section>
     </div>
   </div>
 </div>

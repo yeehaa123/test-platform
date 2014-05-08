@@ -98,23 +98,55 @@ validationApp.controller('registrationController', [
 
     $scope.helpShown = false
 
+    userInfoVisible = false
+    backgroundInfoVisible = false
+    experienceInfoVisible = false
+    motivationInfoVisible = true
+
+    otherExperience = true
+
+    $scope.showUserInfo = (user)->
+      userInfoVisible || !userInfoComplete(user)
+
+    $scope.showBackgroundInfo = (user) ->
+      (!backgroundComplete(user) || backgroundInfoVisible) && userInfoComplete(user)
+
+    $scope.showExperienceInfo = (user) ->
+      (!$scope.experienceComplete(user) || experienceInfoVisible) && backgroundComplete(user)
+
+    $scope.showMotivationInfo = (user) ->
+      $scope.experienceComplete(user) && motivationInfoVisible
+
+    $scope.toggleUserInfo = ->
+      userInfoVisible =!userInfoVisible
+
+    $scope.toggleBackgroundInfo = ->
+      backgroundInfoVisible = !backgroundInfoVisible
+
+    $scope.toggleExperienceInfo = ->
+      experienceInfoVisible = !experienceInfoVisible
+
+    $scope.toggleMotivationInfo = ->
+      motivationInfoVisible = !motivationInfoVisible
+
     $scope.showHelp =  ->
       $scope.helpShown = true
 
     $scope.showOthersInput = ->
-      true if $scope.knowOthers is "yes"
+      if $scope.knowOthers is "yes"
+        otherExperience = true
+      else if $scope.knowOthers is "no"
+        otherExperience = false
 
-    $scope.userInfoComplete = (user) ->
+    userInfoComplete = (user) ->
       user.userName && user.firstName && user.lastName &&
       user.email && user.studno
 
-    $scope.backgroundComplete = (user) ->
-      $scope.userInfoComplete && user.study && user.studyYear
+    backgroundComplete = (user) ->
+      userInfoComplete && user.study && user.studyYear
 
     $scope.experienceComplete = (user) ->
-
-      $scope.userInfoComplete && $scope.backgroundComplete &&
-      (user.others or $scope.knowOthers is "no" )
+      user.others or !otherExperience
 
     $scope.yearOptions =
       "ba1": "Bachelor year 1",
