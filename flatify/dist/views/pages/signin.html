@@ -424,22 +424,23 @@
                     <input type="radio" ng-model="knowOthers" value="no" default>No
                   </label> 
 
-                  <div ng-show="showOthersInput()" class="others input-group input-group-lg">
-                    <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-barcode"></span>
-                    </span>
-                    <textarea class="form-control"
-                           name="others"
-                           placeholder="Please list any other programming language that you know (separated by comma's). Type none if you don't know any others."
-                           ng-model="newUser.others"
-                           required>
-                  </textarea>
+                  <div ng-show="showOthersInput()">
+                    <div  class="others input-group input-group-lg">
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-barcode"></span>
+                      </span>
+                      <textarea class="form-control"
+                             name="others"
+                             ng-model="newUser.others"
+                             value="none">
+                    </textarea>
+                  </div>
+
+                  <p class="help-block">
+                     Please list any other programming language that you know (separated by comma's). Type none if you don't know any others.
+                  </p>
                 </div>
 
-                <p ng-show="userForm.others.$invalid && !userForm.others.$pristine" 
-                   class="help-block">
-                   Please list any other programming language that you know (separated by comma's). Type none if you don't know any others.
-                </p>
               </div>
             </div>
 

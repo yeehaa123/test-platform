@@ -180,7 +180,7 @@ validationApp.controller('registrationController', [
           'ruby': $scope.newUser.ruby
           'python': $scope.newUser.python
           'php': $scope.newUser.php
-          'others': $scope.newUser.others.split(", ")
+          'others': $scope.newUser.others.split(", ") 
         'motivation': $scope.newUser.motivation
 
       if (isValid)
