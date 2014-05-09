@@ -180,8 +180,10 @@ validationApp.controller('registrationController', [
           'ruby': $scope.newUser.ruby
           'python': $scope.newUser.python
           'php': $scope.newUser.php
-          'others': $scope.newUser.others.split(", ") 
         'motivation': $scope.newUser.motivation
+
+      if $scope.newUser.others
+        user.codingExperience.others = $scope.newUser.others.split(", ")
 
       if (isValid)
         users.$add(user).then (ref) ->

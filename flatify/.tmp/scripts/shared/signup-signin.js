@@ -175,11 +175,13 @@
             'javaScript': $scope.newUser.javaScript,
             'ruby': $scope.newUser.ruby,
             'python': $scope.newUser.python,
-            'php': $scope.newUser.php,
-            'others': $scope.newUser.others.split(", ")
+            'php': $scope.newUser.php
           },
           'motivation': $scope.newUser.motivation
         };
+        if ($scope.newUser.others) {
+          user.codingExperience.others = $scope.newUser.others.split(", ");
+        }
         if (isValid) {
           return users.$add(user).then(function(ref) {
             return $scope.$emit('user:registered', user);
