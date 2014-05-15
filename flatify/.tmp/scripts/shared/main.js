@@ -13,6 +13,7 @@
       };
       $scope.currentUser = false;
       $scope.newUser = false;
+      $scope.courseInfoVisible = true;
       $scope.main = {
         brand: 'Coding the Humanities',
         name: 'Lisa Doe'
@@ -32,13 +33,17 @@
           $scope.currentUser = registereduser;
           return $scope.$broadcast("user:loggedin", $scope.currentUser);
         }), function(newUser) {
+          $scope.courseInfoVisible = !$scope.courseInfoVisible;
           return $scope.newUser = newUser;
         });
       };
-      return $scope.logout = function() {
+      $scope.logout = function() {
         $scope.$broadcast("user:loggedout", $scope.currentUser);
         $scope.currentUser = false;
         return authentication.logout();
+      };
+      return $scope.toggleCourseInfo = function() {
+        return $scope.courseInfoVisible = !$scope.courseInfoVisible;
       };
     }
   ]);

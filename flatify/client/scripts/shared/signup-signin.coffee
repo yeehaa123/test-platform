@@ -52,7 +52,6 @@ validationApp.service('authentication', [
               java: 0
               c: 0
             )
-            console.log(user)
             deferred.reject(user)
 
        deferred.promise
@@ -102,6 +101,7 @@ validationApp.controller('registrationController', [
     backgroundInfoVisible = false
     experienceInfoVisible = false
     motivationInfoVisible = true
+    courseInfoVisible = true
 
     otherExperience = true
 
@@ -116,6 +116,7 @@ validationApp.controller('registrationController', [
 
     $scope.showMotivationInfo = (user) ->
       $scope.experienceComplete(user) && motivationInfoVisible
+
 
     $scope.toggleUserInfo = ->
       userInfoVisible =!userInfoVisible
@@ -155,10 +156,6 @@ validationApp.controller('registrationController', [
       "ma1": "Master year 1",
       "ma2": "Master year 2",
       "oth": "Other"
-
-
-    $scope.submitExperience = () ->
-      console.log($scope.newUser.experience)
 
     $scope.submitForm = (isValid) ->
 

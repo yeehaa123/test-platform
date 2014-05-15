@@ -12,6 +12,7 @@ app.controller('AppCtrl', [
 
         $scope.currentUser = false
         $scope.newUser = false
+        $scope.courseInfoVisible = true
 
         $scope.main =
             brand: 'Coding the Humanities'
@@ -31,6 +32,7 @@ app.controller('AppCtrl', [
             $scope.currentUser = registereduser
             $scope.$broadcast "user:loggedin", $scope.currentUser
           ), (newUser) ->
+            $scope.courseInfoVisible = !$scope.courseInfoVisible
             $scope.newUser = newUser
 
 
@@ -38,6 +40,9 @@ app.controller('AppCtrl', [
           $scope.$broadcast "user:loggedout", $scope.currentUser
           $scope.currentUser = false
           authentication.logout()
+
+        $scope.toggleCourseInfo = ->
+          $scope.courseInfoVisible =!$scope.courseInfoVisible
 ])
 
 app.controller('NavCtrl', [

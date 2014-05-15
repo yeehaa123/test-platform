@@ -52,7 +52,6 @@
               java: 0,
               c: 0
             });
-            console.log(user);
             return deferred.reject(user);
           }
         });
@@ -93,13 +92,14 @@
 
   validationApp.controller('registrationController', [
     '$scope', 'userService', '$rootScope', function($scope, userService, $rootScope) {
-      var backgroundComplete, backgroundInfoVisible, experienceInfoVisible, motivationInfoVisible, otherExperience, userInfoComplete, userInfoVisible, users;
+      var backgroundComplete, backgroundInfoVisible, courseInfoVisible, experienceInfoVisible, motivationInfoVisible, otherExperience, userInfoComplete, userInfoVisible, users;
       users = userService.users;
       $scope.helpShown = false;
       userInfoVisible = false;
       backgroundInfoVisible = false;
       experienceInfoVisible = false;
       motivationInfoVisible = true;
+      courseInfoVisible = true;
       otherExperience = true;
       $scope.showUserInfo = function(user) {
         return userInfoVisible || !userInfoComplete(user);
@@ -151,9 +151,6 @@
         "ma1": "Master year 1",
         "ma2": "Master year 2",
         "oth": "Other"
-      };
-      $scope.submitExperience = function() {
-        return console.log($scope.newUser.experience);
       };
       return $scope.submitForm = function(isValid) {
         var user;

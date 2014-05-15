@@ -1,15 +1,52 @@
+@font-face {
+  font-family: NittyNormal;
+  src: url('NN.woff') format('woff');
+}
+
+@font-face {
+  font-family: NittyBold;
+  src: url('NB.woff') format('woff');
+}
+
+a {
+  color: white;
+}
+
+p a {
+  color: #75C7B3;
+}
+
+p.register {
+  text-align: center;
+}
+
+p, span {
+  font-family: NittyNormal;
+  font-size: 16px;
+}
+span {
+  vertical-align: center;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .page-signin,
 .page-signup {
 
-    // 
     .signin-header {
         padding: 25px 0;
-        background-color: #dfe0e6;
+        background: #75C7B3;
+        color: white;
     }
 
     .logo {
+        font-family: NittyBold;
         font-size: 46px;
-        font-weight: bold;
+        font-weight: 500;
         a {
             &:hover {
                 text-decoration: none;
@@ -27,6 +64,7 @@
     .registration-message {
       text-align: center;
       padding: 20px;
+      background: #75C7B3;
     }
 
     .form-container {

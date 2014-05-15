@@ -9563,15 +9563,54 @@ button.toast-close-button {
   margin-top: 0;
 }
 
+@font-face {
+  font-family: NittyNormal;
+  src: url("NN.woff") format("woff");
+}
+
+@font-face {
+  font-family: NittyBold;
+  src: url("NB.woff") format("woff");
+}
+
+a {
+  color: white;
+}
+
+p a {
+  color: #75C7B3;
+}
+
+p.register {
+  text-align: center;
+}
+
+p, span {
+  font-family: NittyNormal;
+  font-size: 16px;
+}
+
+span {
+  vertical-align: center;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .page-signin .signin-header,
 .page-signup .signin-header {
   padding: 25px 0;
-  background-color: #dfe0e6;
+  background: #75C7B3;
+  color: white;
 }
 .page-signin .logo,
 .page-signup .logo {
+  font-family: NittyBold;
   font-size: 46px;
-  font-weight: bold;
+  font-weight: 500;
 }
 .page-signin .logo a:hover,
 .page-signup .logo a:hover {
@@ -9588,6 +9627,7 @@ button.toast-close-button {
 .page-signup .registration-message {
   text-align: center;
   padding: 20px;
+  background: #75C7B3;
 }
 .page-signin .form-container,
 .page-signup .form-container {
